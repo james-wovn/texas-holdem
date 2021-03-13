@@ -1,0 +1,27 @@
+plugins {
+    id 'application'
+    id 'java'
+}
+
+group 'com.jamesball.texasholdem'
+version '1.0-SNAPSHOT'
+sourceCompatibility = '15'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.1'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.8.0'
+    testImplementation 'org.mockito:mockito-inline:3.8.0'
+}
+
+application {
+    mainClass = 'com.jamesball.texasholdem.TexasHoldemApplication'
+}
+
+test {
+    useJUnitPlatform()
+}

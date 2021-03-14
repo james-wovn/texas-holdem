@@ -6,6 +6,7 @@ import java.util.Objects;
 
 public final class PlayingCardDeck {
     private final List<PlayingCard> cards;
+    private int nextCard;
 
     public PlayingCardDeck() {
         cards = new ArrayList<>();
@@ -14,21 +15,28 @@ public final class PlayingCardDeck {
                 cards.add(new PlayingCard(suit, rank));
             }
         }
+        nextCard = 0;
     }
 
     public PlayingCardDeck(List<PlayingCard> cards) {
         this.cards = cards;
+        nextCard = 0;
     }
 
     public List<PlayingCard> cards() {
         return cards;
     }
 
+    public PlayingCard next() {
+        final PlayingCard card = cards.get(nextCard++);
+        return card.clone();
+    }
+
     @Override
     public PlayingCardDeck clone() {
         List<PlayingCard> copiedCards = new ArrayList<>();
         for (PlayingCard card : cards) {
-            copiedCards.add(new PlayingCard(card.suit(), card.rank()));
+            copiedCards.add(card.clone());
         }
         return new PlayingCardDeck(copiedCards);
     }

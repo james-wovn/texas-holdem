@@ -20,6 +20,11 @@ public final class PlayingCard {
     }
 
     @Override
+    public PlayingCard clone() {
+        return new PlayingCard(suit, rank);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -47,5 +48,22 @@ public class PlayingCardDeckTest {
     public void whenCloned_thenInstantiateAnIdenticalObject() {
         final PlayingCardDeck clonedDeck = deck.clone();
         assertEquals(deck, clonedDeck);
+    }
+
+    @Test
+    public void whenNext_thenDealNextCardFromTopOfDeck() {
+        final List<PlayingCard> cards = deck.cards();
+
+        final PlayingCard expectedFirstCard = cards.get(0);
+        final PlayingCard expectedSecondCard = cards.get(1);
+        final PlayingCard expectedThirdCard = cards.get(2);
+
+        final PlayingCard actualFirstCard = deck.next();
+        final PlayingCard actualSecondCard = deck.next();
+        final PlayingCard actualThirdCard = deck.next();
+
+        assertEquals(expectedFirstCard, actualFirstCard);
+        assertEquals(expectedSecondCard, actualSecondCard);
+        assertEquals(expectedThirdCard, actualThirdCard);
     }
 }

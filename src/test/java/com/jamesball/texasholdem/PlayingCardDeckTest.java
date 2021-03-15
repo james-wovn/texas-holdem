@@ -52,11 +52,9 @@ public class PlayingCardDeckTest {
 
     @Test
     public void whenNext_thenDealNextCardFromTopOfDeck() {
-        final List<PlayingCard> cards = deck.cards();
-
-        final PlayingCard expectedFirstCard = cards.get(0);
-        final PlayingCard expectedSecondCard = cards.get(1);
-        final PlayingCard expectedThirdCard = cards.get(2);
+        final PlayingCard expectedFirstCard = deck.cards().get(0);
+        final PlayingCard expectedSecondCard = deck.cards().get(1);
+        final PlayingCard expectedThirdCard = deck.cards().get(2);
 
         final PlayingCard actualFirstCard = deck.next();
         final PlayingCard actualSecondCard = deck.next();

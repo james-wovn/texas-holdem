@@ -28,8 +28,7 @@ public final class PlayingCardDeck {
     }
 
     public PlayingCard next() {
-        final PlayingCard card = cards.get(nextCard++);
-        return card.clone();
+        return cards.get(nextCard++);
     }
 
     @Override

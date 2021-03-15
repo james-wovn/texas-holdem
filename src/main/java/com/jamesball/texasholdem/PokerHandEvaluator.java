@@ -1,22 +1,29 @@
 package com.jamesball.texasholdem;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class PokerHandEvaluator {
 
-    private static final long CARDS_WITH_MATCHING_RANK_IN_ONE_PAIR = 2;
-
     public PokerHand evaluate(List<PlayingCard> hand) {
-        if (isOnePair(hand)) {
-            return PokerHand.ONE_PAIR;
-        }
-        return PokerHand.HIGH_CARD;
+        final Map<PlayingCardRank, List<PlayingCard>> ranks = parseRanks(hand);
+
+        return switch (numberOfPairs(ranks)) {
+            case 2 -> PokerHand.TWO_PAIR;
+            case 1 -> PokerHand.ONE_PAIR;
+            default -> PokerHand.HIGH_CARD;
+        };
     }
 
-    private boolean isOnePair(List<PlayingCard> hand) {
+    private int numberOfPairs(Map<PlayingCardRank, List<PlayingCard>> ranks) {
+        return (int) ranks.values().stream()
+                .filter(playingCards -> playingCards.size() == 2)
+                .count();
+    }
+
+    private Map<PlayingCardRank, List<PlayingCard>> parseRanks(List<PlayingCard> hand) {
         return hand.stream()
-                .collect(Collectors.groupingBy(PlayingCard::rank, Collectors.counting()))
-                .containsValue(CARDS_WITH_MATCHING_RANK_IN_ONE_PAIR);
+                .collect(Collectors.groupingBy(PlayingCard::rank));
     }
 }

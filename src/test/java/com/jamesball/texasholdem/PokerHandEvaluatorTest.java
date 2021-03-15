@@ -20,7 +20,7 @@ public class PokerHandEvaluatorTest {
     }
 
     @Test
-    public void whenHandHasTwoPlayingCardsOfSameRank_thenOnePair() {
+    public void whenHandHasTwoPlayingCardsWithSameRank_thenOnePair() {
         hand.add(new PlayingCard(PlayingCardSuit.SPADES, PlayingCardRank.TEN));
         hand.add(new PlayingCard(PlayingCardSuit.HEARTS, PlayingCardRank.TEN));
         hand.add(new PlayingCard(PlayingCardSuit.SPADES, PlayingCardRank.EIGHT));
@@ -28,6 +28,17 @@ public class PokerHandEvaluatorTest {
         hand.add(new PlayingCard(PlayingCardSuit.CLUBS, PlayingCardRank.FOUR));
 
         assertEquals(PokerHand.ONE_PAIR, evaluator.evaluate(hand));
+    }
+
+    @Test
+    public void whenHandHasTwoSetsOfPlayingCardsWithSameRank_thenTwoPair() {
+        hand.add(new PlayingCard(PlayingCardSuit.HEARTS, PlayingCardRank.JACK));
+        hand.add(new PlayingCard(PlayingCardSuit.SPADES, PlayingCardRank.JACK));
+        hand.add(new PlayingCard(PlayingCardSuit.CLUBS, PlayingCardRank.THREE));
+        hand.add(new PlayingCard(PlayingCardSuit.SPADES, PlayingCardRank.THREE));
+        hand.add(new PlayingCard(PlayingCardSuit.HEARTS, PlayingCardRank.TWO));
+
+        assertEquals(PokerHand.TWO_PAIR, evaluator.evaluate(hand));
     }
 
     @Test

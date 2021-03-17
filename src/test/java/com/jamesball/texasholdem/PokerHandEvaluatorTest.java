@@ -20,6 +20,17 @@ public class PokerHandEvaluatorTest {
     }
 
     @Test
+    public void whenHandHasNoCombinationOfCards_thenHighCard() {
+        hand.add(new PlayingCard(PlayingCardSuit.DIAMONDS, PlayingCardRank.KING));
+        hand.add(new PlayingCard(PlayingCardSuit.DIAMONDS, PlayingCardRank.QUEEN));
+        hand.add(new PlayingCard(PlayingCardSuit.SPADES, PlayingCardRank.SEVEN));
+        hand.add(new PlayingCard(PlayingCardSuit.SPADES, PlayingCardRank.FOUR));
+        hand.add(new PlayingCard(PlayingCardSuit.HEARTS, PlayingCardRank.THREE));
+
+        assertEquals(PokerHand.HIGH_CARD, evaluator.evaluate(hand));
+    }
+
+    @Test
     public void whenHandContainsTwoCardsOfOneRank_thenOnePair() {
         hand.add(new PlayingCard(PlayingCardSuit.SPADES, PlayingCardRank.TEN));
         hand.add(new PlayingCard(PlayingCardSuit.HEARTS, PlayingCardRank.TEN));
@@ -72,16 +83,5 @@ public class PokerHandEvaluatorTest {
         hand.add(new PlayingCard(PlayingCardSuit.DIAMONDS, PlayingCardRank.TWO));
 
         assertEquals(PokerHand.FOUR_OF_A_KIND, evaluator.evaluate(hand));
-    }
-
-    @Test
-    public void whenHandHasNoCombinationOfCards_thenHighCard() {
-        hand.add(new PlayingCard(PlayingCardSuit.DIAMONDS, PlayingCardRank.KING));
-        hand.add(new PlayingCard(PlayingCardSuit.DIAMONDS, PlayingCardRank.QUEEN));
-        hand.add(new PlayingCard(PlayingCardSuit.SPADES, PlayingCardRank.SEVEN));
-        hand.add(new PlayingCard(PlayingCardSuit.SPADES, PlayingCardRank.FOUR));
-        hand.add(new PlayingCard(PlayingCardSuit.HEARTS, PlayingCardRank.THREE));
-
-        assertEquals(PokerHand.HIGH_CARD, evaluator.evaluate(hand));
     }
 }

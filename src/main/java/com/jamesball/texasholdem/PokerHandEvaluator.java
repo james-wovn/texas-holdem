@@ -6,9 +6,15 @@ import java.util.stream.Collectors;
 
 public class PokerHandEvaluator {
 
-    private static final int CARDS_IN_PAIR = 2;
-    private static final int CARDS_IN_THREE_OF_A_KIND = 3;
-    private static final int CARDS_IN_FOUR_OF_A_KIND = 4;
+    private static final int NUMBER_OF_CARDS_IN_A_PAIR = 2;
+    private static final int NUMBER_OF_CARDS_IN_THREE_OF_A_KIND = 3;
+    private static final int NUMBER_OF_CARDS_IN_FOUR_OF_A_KIND = 4;
+
+    private final PlayingCardComparator comparator;
+
+    public PokerHandEvaluator() {
+        comparator = new PlayingCardComparator();
+    }
 
     public PokerHand evaluate(List<PlayingCard> hand) {
         final Map<PlayingCardRank, List<PlayingCard>> ranks = parseRanks(hand);
@@ -33,15 +39,15 @@ public class PokerHandEvaluator {
     }
 
     private int pairs(Map<PlayingCardRank, List<PlayingCard>> ranks) {
-        return countCombinationsOfSameRank(ranks, CARDS_IN_PAIR);
+        return countCombinationsOfSameRank(ranks, NUMBER_OF_CARDS_IN_A_PAIR);
     }
 
     private int trips(Map<PlayingCardRank, List<PlayingCard>> ranks) {
-        return countCombinationsOfSameRank(ranks, CARDS_IN_THREE_OF_A_KIND);
+        return countCombinationsOfSameRank(ranks, NUMBER_OF_CARDS_IN_THREE_OF_A_KIND);
     }
 
     private int quads(Map<PlayingCardRank, List<PlayingCard>> ranks) {
-        return countCombinationsOfSameRank(ranks, CARDS_IN_FOUR_OF_A_KIND);
+        return countCombinationsOfSameRank(ranks, NUMBER_OF_CARDS_IN_FOUR_OF_A_KIND);
     }
 
     private int countCombinationsOfSameRank(Map<PlayingCardRank, List<PlayingCard>> ranks, int cardsOfSameRank) {

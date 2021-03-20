@@ -16,11 +16,13 @@ public final class PokerHandParser {
 
         findCombinations(combinations, new HashSet<>(), cards);
 
-        return combinations.stream()
+        final List<PokerHand> straights = combinations.stream()
                 .filter(this::isStraight)
                 .map(combination -> new PokerHand(PokerHandType.STRAIGHT, combination))
-                .findFirst()
-                .orElseThrow();
+                .sorted()
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        return straights.get(straights.size() - 1);
     }
 
     public void findCombinations(Set<Set<PlayingCard>> combinations, Set<PlayingCard> currentCombination, Set<PlayingCard> cards) {

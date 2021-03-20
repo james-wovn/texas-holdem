@@ -54,7 +54,7 @@ public class PokerHandParserTest {
     }
 
     @Test
-    public void whenCardsContainOneFiveCardSequence_thenParseStraight() {
+    public void whenCardsContainSingleFiveCardSequence_thenParseStraight() {
         final List<PlayingCard> holeCards = new ArrayList<>();
         holeCards.add(new PlayingCard(PlayingCardSuit.CLUBS, PlayingCardRank.SIX));
         holeCards.add(new PlayingCard(PlayingCardSuit.DIAMONDS, PlayingCardRank.EIGHT));
@@ -66,11 +66,37 @@ public class PokerHandParserTest {
         communityCards.add(new PlayingCard(PlayingCardSuit.DIAMONDS, PlayingCardRank.ACE));
         communityCards.add(new PlayingCard(PlayingCardSuit.HEARTS, PlayingCardRank.NINE));
 
+        // 5♥ 6♣ 7♣ 8♦ 9♥
         final PokerHand expectedHand = new PokerHand(PokerHandType.STRAIGHT, Set.of(
                 new PlayingCard(PlayingCardSuit.CLUBS, PlayingCardRank.SIX),
                 new PlayingCard(PlayingCardSuit.DIAMONDS, PlayingCardRank.EIGHT),
                 new PlayingCard(PlayingCardSuit.HEARTS, PlayingCardRank.FIVE),
                 new PlayingCard(PlayingCardSuit.CLUBS, PlayingCardRank.SEVEN),
+                new PlayingCard(PlayingCardSuit.HEARTS, PlayingCardRank.NINE)
+        ));
+
+        assertEquals(expectedHand, parser.parse(holeCards, communityCards));
+    }
+
+    @Test
+    public void whenCardsContainMultipleFiveCardSequence_thenParseHighestStraight() {
+        final List<PlayingCard> holeCards = new ArrayList<>();
+        holeCards.add(new PlayingCard(PlayingCardSuit.CLUBS, PlayingCardRank.SIX));
+        holeCards.add(new PlayingCard(PlayingCardSuit.DIAMONDS, PlayingCardRank.EIGHT));
+
+        final List<PlayingCard> communityCards = new ArrayList<>();
+        communityCards.add(new PlayingCard(PlayingCardSuit.HEARTS, PlayingCardRank.FIVE));
+        communityCards.add(new PlayingCard(PlayingCardSuit.SPADES, PlayingCardRank.FOUR));
+        communityCards.add(new PlayingCard(PlayingCardSuit.CLUBS, PlayingCardRank.SEVEN));
+        communityCards.add(new PlayingCard(PlayingCardSuit.DIAMONDS, PlayingCardRank.TEN));
+        communityCards.add(new PlayingCard(PlayingCardSuit.HEARTS, PlayingCardRank.NINE));
+
+        // 6♣ 7♣ 8♦ 9♥ 10♦
+        final PokerHand expectedHand = new PokerHand(PokerHandType.STRAIGHT, Set.of(
+                new PlayingCard(PlayingCardSuit.CLUBS, PlayingCardRank.SIX),
+                new PlayingCard(PlayingCardSuit.DIAMONDS, PlayingCardRank.EIGHT),
+                new PlayingCard(PlayingCardSuit.CLUBS, PlayingCardRank.SEVEN),
+                new PlayingCard(PlayingCardSuit.DIAMONDS, PlayingCardRank.TEN),
                 new PlayingCard(PlayingCardSuit.HEARTS, PlayingCardRank.NINE)
         ));
 

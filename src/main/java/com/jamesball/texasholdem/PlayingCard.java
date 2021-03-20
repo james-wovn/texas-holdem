@@ -2,7 +2,7 @@ package com.jamesball.texasholdem;
 
 import java.util.Objects;
 
-public final class PlayingCard {
+public final class PlayingCard implements Comparable<PlayingCard> {
     private final PlayingCardSuit suit;
     private final PlayingCardRank rank;
 
@@ -25,15 +25,31 @@ public final class PlayingCard {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PlayingCard that = (PlayingCard) o;
-        return suit == that.suit && rank == that.rank;
+    public boolean equals(Object otherObject) {
+        if (this == otherObject) {
+            return true;
+        }
+
+        if (otherObject == null) {
+            return false;
+        }
+
+        if (getClass() != otherObject.getClass()) {
+            return false;
+        }
+
+        final PlayingCard otherCard = (PlayingCard) otherObject;
+
+        return suit == otherCard.suit && rank == otherCard.rank;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(suit, rank);
+    }
+
+    @Override
+    public int compareTo(PlayingCard otherCard) {
+        return Integer.compare(rank.value(), otherCard.rank.value());
     }
 }

@@ -45,10 +45,10 @@ public class DealerTest {
         players.add(new Player());
         players.add(new Player());
 
-        dealer.dealHand(deck, players);
+        dealer.dealStartingHands(deck, players);
 
-        assertEquals(expectedPlayer1Hand, players.get(0).hand());
-        assertEquals(expectedPlayer2Hand, players.get(1).hand());
-        assertEquals(expectedPlayer3Hand, players.get(2).hand());
+        assertEquals(expectedPlayer1Hand, players.get(0).startingHand());
+        assertEquals(expectedPlayer2Hand, players.get(1).startingHand());
+        assertEquals(expectedPlayer3Hand, players.get(2).startingHand());
     }
 }

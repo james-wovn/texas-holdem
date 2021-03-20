@@ -3,19 +3,19 @@ package com.jamesball.texasholdem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player {
+public final class Player {
 
-    private List<PlayingCard> hand;
+    private List<PlayingCard> startingHand;
 
     public Player() {
-        hand = new ArrayList<>();
+        startingHand = new ArrayList<>();
     }
 
-    public List<PlayingCard> hand() {
-        return hand;
+    public List<PlayingCard> startingHand() {
+        return startingHand;
     }
 
-    public void addToHand(PlayingCard card) {
-        hand.add(card);
+    public void addToStartingHand(PlayingCard card) {
+        startingHand.add(card);
     }
 }

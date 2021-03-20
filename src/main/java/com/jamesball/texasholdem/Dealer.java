@@ -5,7 +5,7 @@ import java.util.List;
 
 public final class Dealer {
 
-    private static final int HAND_SIZE = 2;
+    private static final int STARTING_HAND_SIZE = 2;
 
     public PlayingCardDeck shuffle(PlayingCardDeck deck) {
         final PlayingCardDeck shuffledDeck = deck.clone();
@@ -13,10 +13,14 @@ public final class Dealer {
         return shuffledDeck;
     }
 
-    public void dealHand(PlayingCardDeck deck, List<Player> players) {
-        for (int i = 0; i < HAND_SIZE; i++) {
+    public PlayingCard deal(PlayingCardDeck deck) {
+        return deck.next();
+    }
+
+    public void dealStartingHands(PlayingCardDeck deck, List<Player> players) {
+        for (int i = 0; i < STARTING_HAND_SIZE; i++) {
             for (Player player : players) {
-                player.addToHand(deck.next());
+                player.addToStartingHand(deck.next());
             }
         }
     }

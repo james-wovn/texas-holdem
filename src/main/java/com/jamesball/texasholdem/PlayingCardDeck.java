@@ -41,11 +41,22 @@ public final class PlayingCardDeck {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PlayingCardDeck deck = (PlayingCardDeck) o;
-        return cards.equals(deck.cards);
+    public boolean equals(Object otherObject) {
+        if (this == otherObject) {
+            return true;
+        }
+
+        if (otherObject == null) {
+            return false;
+        }
+
+        if (getClass() != otherObject.getClass()) {
+            return false;
+        }
+
+        final PlayingCardDeck otherDeck = (PlayingCardDeck) otherObject;
+
+        return cards.equals(otherDeck.cards);
     }
 
     @Override

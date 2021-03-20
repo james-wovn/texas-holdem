@@ -28,17 +28,17 @@ public class DealerTest {
 
     @Test
     public void whenDealHand_thenDealTwoCardsOneAtATimeToEachPlayer() {
-        final List<PlayingCard> expectedPlayer1Hand = new ArrayList<>();
-        expectedPlayer1Hand.add(deck.cards().get(0));
-        expectedPlayer1Hand.add(deck.cards().get(3));
+        final List<PlayingCard> expectedPlayer1HoleCards = new ArrayList<>();
+        expectedPlayer1HoleCards.add(deck.cards().get(0));
+        expectedPlayer1HoleCards.add(deck.cards().get(3));
 
-        final List<PlayingCard> expectedPlayer2Hand = new ArrayList<>();
-        expectedPlayer2Hand.add(deck.cards().get(1));
-        expectedPlayer2Hand.add(deck.cards().get(4));
+        final List<PlayingCard> expectedPlayer2HoleCards = new ArrayList<>();
+        expectedPlayer2HoleCards.add(deck.cards().get(1));
+        expectedPlayer2HoleCards.add(deck.cards().get(4));
 
-        final List<PlayingCard> expectedPlayer3Hand = new ArrayList<>();
-        expectedPlayer3Hand.add(deck.cards().get(2));
-        expectedPlayer3Hand.add(deck.cards().get(5));
+        final List<PlayingCard> expectedPlayer3HoleCards = new ArrayList<>();
+        expectedPlayer3HoleCards.add(deck.cards().get(2));
+        expectedPlayer3HoleCards.add(deck.cards().get(5));
 
         final List<Player> players = new ArrayList<>();
         players.add(new Player());
@@ -47,8 +47,8 @@ public class DealerTest {
 
         dealer.dealStartingHands(deck, players);
 
-        assertEquals(expectedPlayer1Hand, players.get(0).startingHand());
-        assertEquals(expectedPlayer2Hand, players.get(1).startingHand());
-        assertEquals(expectedPlayer3Hand, players.get(2).startingHand());
+        assertEquals(expectedPlayer1HoleCards, players.get(0).holeCards());
+        assertEquals(expectedPlayer2HoleCards, players.get(1).holeCards());
+        assertEquals(expectedPlayer3HoleCards, players.get(2).holeCards());
     }
 }

@@ -20,7 +20,7 @@ public final class Dealer {
     public void dealStartingHands(PlayingCardDeck deck, List<Player> players) {
         for (int i = 0; i < STARTING_HAND_SIZE; i++) {
             for (Player player : players) {
-                player.addToStartingHand(deck.next());
+                player.addToHoleCards(deck.next());
             }
         }
     }

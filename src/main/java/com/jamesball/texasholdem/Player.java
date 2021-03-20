@@ -5,17 +5,17 @@ import java.util.List;
 
 public final class Player {
 
-    private List<PlayingCard> startingHand;
+    private List<PlayingCard> holeCards;
 
     public Player() {
-        startingHand = new ArrayList<>();
+        holeCards = new ArrayList<>();
     }
 
-    public List<PlayingCard> startingHand() {
-        return startingHand;
+    public List<PlayingCard> holeCards() {
+        return holeCards;
     }
 
-    public void addToStartingHand(PlayingCard card) {
-        startingHand.add(card);
+    public void addToHoleCards(PlayingCard card) {
+        holeCards.add(card);
     }
 }

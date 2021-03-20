@@ -20,7 +20,7 @@ public class PlayerTest {
 
     @Test
     public void whenInstantiated_thenHandIsEmpty() {
-        assertTrue(player.startingHand().isEmpty());
+        assertTrue(player.holeCards().isEmpty());
     }
 
     @Test
@@ -29,8 +29,8 @@ public class PlayerTest {
         final List<PlayingCard> expectedHand = new ArrayList<>();
         expectedHand.add(dealtCard);
 
-        player.addToStartingHand(dealtCard);
+        player.addToHoleCards(dealtCard);
 
-        assertEquals(expectedHand, player.startingHand());
+        assertEquals(expectedHand, player.holeCards());
     }
 }
